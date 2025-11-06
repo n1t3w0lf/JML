@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+
+  <!-- JML Solution Site Columns -->
+  <Field
+    ID="{A1B2C3D4-E5F6-4A5B-8C9D-0E1F2A3B4C5D}"
+    Name="JMLEmployeeId"
+    DisplayName="Employee ID"
+    Type="Text"
+    Required="TRUE"
+    Group="JML Columns"
+    MaxLength="50" />
+
+  <Field
+    ID="{B2C3D4E5-F6A7-4B5C-8D9E-0F1A2B3C4D5E}"
+    Name="JMLEmployeeType"
+    DisplayName="Employee Type"
+    Type="Choice"
+    Required="TRUE"
+    Group="JML Columns">
+    <CHOICES>
+      <CHOICE>Full-Time</CHOICE>
+      <CHOICE>Part-Time</CHOICE>
+      <CHOICE>Contractor</CHOICE>
+      <CHOICE>Intern</CHOICE>
+      <CHOICE>Temporary</CHOICE>
+    </CHOICES>
+    <Default>Full-Time</Default>
+  </Field>
+
+  <Field
+    ID="{C3D4E5F6-A7B8-4C5D-8E9F-0A1B2C3D4E5F}"
+    Name="JMLEmployeeStatus"
+    DisplayName="Employee Status"
+    Type="Choice"
+    Required="TRUE"
+    Group="JML Columns">
+    <CHOICES>
+      <CHOICE>Pre-Boarding</CHOICE>
+      <CHOICE>Active</CHOICE>
+      <CHOICE>On Leave</CHOICE>
+      <CHOICE>Notice Period</CHOICE>
+      <CHOICE>Departed</CHOICE>
+    </CHOICES>
+    <Default>Pre-Boarding</Default>
+  </Field>
+
+  <Field
+    ID="{D4E5F6A7-B8C9-4D5E-8F9A-0B1C2D3E4F5A}"
+    Name="JMLStatus"
+    DisplayName="JML Status"
+    Type="Choice"
+    Required="FALSE"
+    Group="JML Columns">
+    <CHOICES>
+      <CHOICE>None</CHOICE>
+      <CHOICE>Onboarding</CHOICE>
+      <CHOICE>Transfer</CHOICE>
+      <CHOICE>Offboarding</CHOICE>
+    </CHOICES>
+    <Default>None</Default>
+  </Field>
+
+  <Field
+    ID="{E5F6A7B8-C9D0-4E5F-8A9B-0C1D2E3F4A5B}"
+    Name="JMLProcessType"
+    DisplayName="Process Type"
+    Type="Choice"
+    Required="TRUE"
+    Group="JML Columns">
+    <CHOICES>
+      <CHOICE>Onboarding</CHOICE>
+      <CHOICE>Transfer</CHOICE>
+      <CHOICE>Offboarding</CHOICE>
+    </CHOICES>
+  </Field>
+
+  <Field
+    ID="{F6A7B8C9-D0E1-4F5A-8B9C-0D1E2F3A4B5C}"
+    Name="JMLProcessStatus"
+    DisplayName="Process Status"
+    Type="Choice"
+    Required="TRUE"
+    Group="JML Columns">
+    <CHOICES>
+      <CHOICE>Pending</CHOICE>
+      <CHOICE>In Progress</CHOICE>
+      <CHOICE>Completed</CHOICE>
+      <CHOICE>On Hold</CHOICE>
+      <CHOICE>Cancelled</CHOICE>
+    </CHOICES>
+    <Default>Pending</Default>
+  </Field>
+
+  <Field
+    ID="{A7B8C9D0-E1F2-4A5B-8C9D-0E1F2A3B4C5D}"
+    Name="JMLPriority"
+    DisplayName="Priority"
+    Type="Choice"
+    Required="TRUE"
+    Group="JML Columns">
+    <CHOICES>
+      <CHOICE>Low</CHOICE>
+      <CHOICE>Normal</CHOICE>
+      <CHOICE>High</CHOICE>
+      <CHOICE>Critical</CHOICE>
+    </CHOICES>
+    <Default>Normal</Default>
+  </Field>
+
+  <Field
+    ID="{B8C9D0E1-F2A3-4B5C-8D9E-0F1A2B3C4D5E}"
+    Name="JMLInitiatedDate"
+    DisplayName="Initiated Date"
+    Type="DateTime"
+    Format="DateOnly"
+    Required="TRUE"
+    Group="JML Columns" />
+
+  <Field
+    ID="{C9D0E1F2-A3B4-4C5D-8E9F-0A1B2C3D4E5F}"
+    Name="JMLTargetCompletion"
+    DisplayName="Target Completion Date"
+    Type="DateTime"
+    Format="DateOnly"
+    Required="TRUE"
+    Group="JML Columns"
+    Indexed="TRUE" />
+
+  <Field
+    ID="{D0E1F2A3-B4C5-4D5E-8F9A-0B1C2D3E4F5A}"
+    Name="JMLOverallProgress"
+    DisplayName="Overall Progress (%)"
+    Type="Number"
+    Min="0"
+    Max="100"
+    Decimals="0"
+    Required="TRUE"
+    Group="JML Columns">
+    <Default>0</Default>
+  </Field>
+
+  <Field
+    ID="{E1F2A3B4-C5D6-4E5F-8A9B-0C1D2E3F4A5B}"
+    Name="JMLTaskStatus"
+    DisplayName="Task Status"
+    Type="Choice"
+    Required="TRUE"
+    Group="JML Columns">
+    <CHOICES>
+      <CHOICE>Not Started</CHOICE>
+      <CHOICE>In Progress</CHOICE>
+      <CHOICE>Completed</CHOICE>
+      <CHOICE>Blocked</CHOICE>
+      <CHOICE>Cancelled</CHOICE>
+    </CHOICES>
+    <Default>Not Started</Default>
+  </Field>
+
+  <Field
+    ID="{F2A3B4C5-D6E7-4F5A-8B9C-0D1E2F3A4B5C}"
+    Name="JMLTaskCategory"
+    DisplayName="Task Category"
+    Type="Choice"
+    Required="TRUE"
+    Group="JML Columns">
+    <CHOICES>
+      <CHOICE>HR</CHOICE>
+      <CHOICE>IT</CHOICE>
+      <CHOICE>Facilities</CHOICE>
+      <CHOICE>Finance</CHOICE>
+      <CHOICE>Manager</CHOICE>
+      <CHOICE>Employee</CHOICE>
+    </CHOICES>
+  </Field>
+
+  <Field
+    ID="{A3B4C5D6-E7F8-4A5B-8C9D-0E1F2A3B4C5D}"
+    Name="JMLAssetStatus"
+    DisplayName="Asset Status"
+    Type="Choice"
+    Required="TRUE"
+    Group="JML Columns">
+    <CHOICES>
+      <CHOICE>Available</CHOICE>
+      <CHOICE>Assigned</CHOICE>
+      <CHOICE>In Maintenance</CHOICE>
+      <CHOICE>Retired</CHOICE>
+      <CHOICE>Lost</CHOICE>
+    </CHOICES>
+    <Default>Available</Default>
+  </Field>
+
+  <Field
+    ID="{B4C5D6E7-F8A9-4B5C-8D9E-0F1A2B3C4D5E}"
+    Name="JMLAssetCategory"
+    DisplayName="Asset Category"
+    Type="Choice"
+    Required="TRUE"
+    Group="JML Columns">
+    <CHOICES>
+      <CHOICE>Laptop</CHOICE>
+      <CHOICE>Desktop</CHOICE>
+      <CHOICE>Monitor</CHOICE>
+      <CHOICE>Phone</CHOICE>
+      <CHOICE>Tablet</CHOICE>
+      <CHOICE>Peripherals</CHOICE>
+      <CHOICE>Access Card</CHOICE>
+      <CHOICE>Other</CHOICE>
+    </CHOICES>
+  </Field>
+
+  <!-- Employees List -->
+  <ListInstance
+    FeatureId="00BFEA71-DE22-43B2-A848-C05709900100"
+    TemplateType="100"
+    Title="Employees"
+    Description="Central repository for all employee records and JML status"
+    Url="Lists/Employees"
+    OnQuickLaunch="TRUE">
+  </ListInstance>
+
+  <!-- JML Processes List -->
+  <ListInstance
+    FeatureId="00BFEA71-DE22-43B2-A848-C05709900100"
+    TemplateType="100"
+    Title="JML Processes"
+    Description="Tracks all Joiner, Mover, and Leaver processes"
+    Url="Lists/JMLProcesses"
+    OnQuickLaunch="TRUE">
+  </ListInstance>
+
+  <!-- JML Tasks List -->
+  <ListInstance
+    FeatureId="00BFEA71-DE22-43B2-A848-C05709900100"
+    TemplateType="171"
+    Title="JML Tasks"
+    Description="Individual tasks within JML processes"
+    Url="Lists/JMLTasks"
+    OnQuickLaunch="TRUE">
+  </ListInstance>
+
+  <!-- Asset Inventory List -->
+  <ListInstance
+    FeatureId="00BFEA71-DE22-43B2-A848-C05709900100"
+    TemplateType="100"
+    Title="Asset Inventory"
+    Description="Tracks all company assets (hardware, access cards, etc.)"
+    Url="Lists/AssetInventory"
+    OnQuickLaunch="TRUE">
+  </ListInstance>
+
+  <!-- Asset Assignments List -->
+  <ListInstance
+    FeatureId="00BFEA71-DE22-43B2-A848-C05709900100"
+    TemplateType="100"
+    Title="Asset Assignments"
+    Description="Tracks which assets are assigned to which employees"
+    Url="Lists/AssetAssignments"
+    OnQuickLaunch="TRUE">
+  </ListInstance>
+
+  <!-- Talent Profiles List -->
+  <ListInstance
+    FeatureId="00BFEA71-DE22-43B2-A848-C05709900100"
+    TemplateType="100"
+    Title="Talent Profiles"
+    Description="Extended employee profiles for talent management"
+    Url="Lists/TalentProfiles"
+    OnQuickLaunch="TRUE">
+  </ListInstance>
+
+  <!-- Skills Matrix List -->
+  <ListInstance
+    FeatureId="00BFEA71-DE22-43B2-A848-C05709900100"
+    TemplateType="100"
+    Title="Skills Matrix"
+    Description="Employee skills and proficiency levels"
+    Url="Lists/SkillsMatrix"
+    OnQuickLaunch="TRUE">
+  </ListInstance>
+
+  <!-- Internal Job Postings List -->
+  <ListInstance
+    FeatureId="00BFEA71-DE22-43B2-A848-C05709900100"
+    TemplateType="100"
+    Title="Internal Job Postings"
+    Description="Internal job opportunities and transfers"
+    Url="Lists/InternalJobPostings"
+    OnQuickLaunch="TRUE">
+  </ListInstance>
+
+  <!-- Workflow Templates List -->
+  <ListInstance
+    FeatureId="00BFEA71-DE22-43B2-A848-C05709900100"
+    TemplateType="100"
+    Title="Workflow Templates"
+    Description="Reusable workflow templates for different JML processes"
+    Url="Lists/WorkflowTemplates"
+    OnQuickLaunch="TRUE">
+  </ListInstance>
+
+  <!-- Notifications Queue List -->
+  <ListInstance
+    FeatureId="00BFEA71-DE22-43B2-A848-C05709900100"
+    TemplateType="100"
+    Title="Notifications Queue"
+    Description="Queue for email and system notifications"
+    Url="Lists/NotificationsQueue"
+    OnQuickLaunch="TRUE">
+  </ListInstance>
+
+  <!-- Audit Log List -->
+  <ListInstance
+    FeatureId="00BFEA71-DE22-43B2-A848-C05709900100"
+    TemplateType="100"
+    Title="Audit Log"
+    Description="System audit trail for all JML activities"
+    Url="Lists/AuditLog"
+    OnQuickLaunch="TRUE">
+  </ListInstance>
+
+  <!-- Error Log List -->
+  <ListInstance
+    FeatureId="00BFEA71-DE22-43B2-A848-C05709900100"
+    TemplateType="100"
+    Title="Error Log"
+    Description="Application error logging"
+    Url="Lists/ErrorLog"
+    OnQuickLaunch="TRUE">
+  </ListInstance>
+
+</Elements>

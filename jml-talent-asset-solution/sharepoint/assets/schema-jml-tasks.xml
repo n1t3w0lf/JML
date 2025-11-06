@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<List xmlns:ows="Microsoft SharePoint" Title="JML Tasks"
+      Direction="$Resources:Direction;"
+      Url="Lists/JMLTasks"
+      BaseType="0"
+      xmlns="http://schemas.microsoft.com/sharepoint/">
+  <MetaData>
+    <ContentTypes>
+      <ContentTypeRef ID="0x01" />
+    </ContentTypes>
+    <Fields>
+      <!-- Task ID -->
+      <Field Name="JMLTaskId"
+             ID="{11111111-AAAA-BBBB-CCCC-111111111111}"
+             DisplayName="Task ID"
+             Type="Text"
+             Required="FALSE"
+             Indexed="TRUE"
+             MaxLength="50"
+             Group="JML Columns" />
+
+      <!-- Process Lookup (Indexed for performance) -->
+      <Field Name="JMLProcessLookup"
+             ID="{22222222-BBBB-CCCC-DDDD-222222222222}"
+             DisplayName="JML Process"
+             Type="Lookup"
+             Required="TRUE"
+             Indexed="TRUE"
+             List="JML Processes"
+             ShowField="JMLProcessId"
+             Group="JML Columns" />
+
+      <!-- Employee Lookup -->
+      <Field Name="JMLTaskEmployeeLookup"
+             ID="{33333333-CCCC-DDDD-EEEE-333333333333}"
+             DisplayName="Employee"
+             Type="Lookup"
+             Required="FALSE"
+             List="Employees"
+             ShowField="JMLFullName"
+             Group="JML Columns" />
+
+      <!-- Task Title (from base Title field, just referencing) -->
+      <!-- Using the built-in Title field -->
+
+      <!-- Task Description -->
+      <Field Name="JMLTaskDescription"
+             ID="{44444444-DDDD-EEEE-FFFF-444444444444}"
+             DisplayName="Task Description"
+             Type="Note"
+             Required="FALSE"
+             NumLines="4"
+             RichText="FALSE"
+             Group="JML Columns" />
+
+      <!-- Task Status (Indexed) -->
+      <Field Name="JMLTaskStatus"
+             ID="{E1F2A3B4-C5D6-4E5F-8A9B-0C1D2E3F4A5B}"
+             DisplayName="Task Status"
+             Type="Choice"
+             Required="TRUE"
+             Indexed="TRUE"
+             Group="JML Columns">
+        <CHOICES>
+          <CHOICE>Not Started</CHOICE>
+          <CHOICE>In Progress</CHOICE>
+          <CHOICE>Completed</CHOICE>
+          <CHOICE>Blocked</CHOICE>
+          <CHOICE>Cancelled</CHOICE>
+        </CHOICES>
+        <Default>Not Started</Default>
+      </Field>
+
+      <!-- Task Category (Indexed) -->
+      <Field Name="JMLTaskCategory"
+             ID="{F2A3B4C5-D6E7-4F5A-8B9C-0D1E2F3A4B5C}"
+             DisplayName="Task Category"
+             Type="Choice"
+             Required="TRUE"
+             Indexed="TRUE"
+             Group="JML Columns">
+        <CHOICES>
+          <CHOICE>HR</CHOICE>
+          <CHOICE>IT</CHOICE>
+          <CHOICE>Facilities</CHOICE>
+          <CHOICE>Finance</CHOICE>
+          <CHOICE>Manager</CHOICE>
+          <CHOICE>Employee</CHOICE>
+        </CHOICES>
+      </Field>
+
+      <!-- Assigned To (User field) -->
+      <Field Name="JMLTaskAssignedTo"
+             ID="{55555555-EEEE-FFFF-AAAA-555555555555}"
+             DisplayName="Assigned To"
+             Type="User"
+             Required="FALSE"
+             UserSelectionMode="PeopleOnly"
+             UserSelectionScope="0"
+             Group="JML Columns" />
+
+      <!-- Due Date (Indexed for performance) -->
+      <Field Name="JMLTaskDueDate"
+             ID="{66666666-FFFF-AAAA-BBBB-666666666666}"
+             DisplayName="Due Date"
+             Type="DateTime"
+             Format="DateOnly"
+             Required="FALSE"
+             Indexed="TRUE"
+             Group="JML Columns" />
+
+      <!-- Completed Date -->
+      <Field Name="JMLTaskCompletedDate"
+             ID="{77777777-AAAA-BBBB-CCCC-777777777777}"
+             DisplayName="Completed Date"
+             Type="DateTime"
+             Format="DateOnly"
+             Required="FALSE"
+             Group="JML Columns" />
+
+      <!-- Priority -->
+      <Field Name="JMLTaskPriority"
+             ID="{88888888-BBBB-CCCC-DDDD-888888888888}"
+             DisplayName="Priority"
+             Type="Choice"
+             Required="TRUE"
+             Group="JML Columns">
+        <CHOICES>
+          <CHOICE>Low</CHOICE>
+          <CHOICE>Normal</CHOICE>
+          <CHOICE>High</CHOICE>
+          <CHOICE>Critical</CHOICE>
+        </CHOICES>
+        <Default>Normal</Default>
+      </Field>
+
+      <!-- Estimated Hours -->
+      <Field Name="JMLTaskEstimatedHours"
+             ID="{99999999-CCCC-DDDD-EEEE-999999999999}"
+             DisplayName="Estimated Hours"
+             Type="Number"
+             Min="0"
+             Decimals="1"
+             Required="FALSE"
+             Group="JML Columns" />
+
+      <!-- Actual Hours -->
+      <Field Name="JMLTaskActualHours"
+             ID="{AAAAAAAA-DDDD-EEEE-FFFF-AAAAAAAAAAAA}"
+             DisplayName="Actual Hours"
+             Type="Number"
+             Min="0"
+             Decimals="1"
+             Required="FALSE"
+             Group="JML Columns" />
+
+      <!-- Sequence Order -->
+      <Field Name="JMLTaskSequence"
+             ID="{BBBBBBBB-EEEE-FFFF-AAAA-BBBBBBBBBBBB}"
+             DisplayName="Sequence Order"
+             Type="Number"
+             Min="0"
+             Decimals="0"
+             Required="FALSE"
+             Group="JML Columns" />
+
+      <!-- Dependencies (Multi-line text) -->
+      <Field Name="JMLTaskDependencies"
+             ID="{CCCCCCCC-FFFF-AAAA-BBBB-CCCCCCCCCCCC}"
+             DisplayName="Dependencies"
+             Type="Note"
+             Required="FALSE"
+             NumLines="3"
+             RichText="FALSE"
+             Group="JML Columns" />
+
+      <!-- Blocking Reason -->
+      <Field Name="JMLTaskBlockingReason"
+             ID="{DDDDDDDD-AAAA-BBBB-CCCC-DDDDDDDDDDDD}"
+             DisplayName="Blocking Reason"
+             Type="Note"
+             Required="FALSE"
+             NumLines="3"
+             RichText="FALSE"
+             Group="JML Columns" />
+
+      <!-- Auto-Generated Flag -->
+      <Field Name="JMLTaskAutoGenerated"
+             ID="{EEEEEEEE-BBBB-CCCC-DDDD-EEEEEEEEEEEE}"
+             DisplayName="Auto-Generated"
+             Type="Boolean"
+             Required="FALSE"
+             Group="JML Columns">
+        <Default>0</Default>
+      </Field>
+
+      <!-- Template Source -->
+      <Field Name="JMLTaskTemplateSource"
+             ID="{FFFFFFFF-CCCC-DDDD-EEEE-FFFFFFFFFFFF}"
+             DisplayName="Template Source"
+             Type="Text"
+             Required="FALSE"
+             MaxLength="100"
+             Group="JML Columns" />
+
+      <!-- Notes -->
+      <Field Name="JMLTaskNotes"
+             ID="{11112222-DDDD-EEEE-FFFF-111122221111}"
+             DisplayName="Notes"
+             Type="Note"
+             Required="FALSE"
+             NumLines="6"
+             RichText="FALSE"
+             Group="JML Columns" />
+    </Fields>
+    <Views>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="All Tasks"
+            DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE"
+            SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/15/images/generic.png"
+            Url="AllItems.aspx">
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <JSLink>clienttemplates.js</JSLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <Toolbar Type="Standard" />
+        <ViewFields>
+          <FieldRef Name="Title" />
+          <FieldRef Name="JMLProcessLookup" />
+          <FieldRef Name="JMLTaskCategory" />
+          <FieldRef Name="JMLTaskStatus" />
+          <FieldRef Name="JMLTaskAssignedTo" />
+          <FieldRef Name="JMLTaskDueDate" />
+          <FieldRef Name="JMLTaskPriority" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="JMLTaskDueDate" Ascending="TRUE" />
+          </OrderBy>
+        </Query>
+      </View>
+      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="My Tasks"
+            DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE"
+            SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/15/images/generic.png"
+            Url="MyTasks.aspx">
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <JSLink>clienttemplates.js</JSLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <Toolbar Type="Standard" />
+        <ViewFields>
+          <FieldRef Name="Title" />
+          <FieldRef Name="JMLProcessLookup" />
+          <FieldRef Name="JMLTaskCategory" />
+          <FieldRef Name="JMLTaskStatus" />
+          <FieldRef Name="JMLTaskDueDate" />
+          <FieldRef Name="JMLTaskPriority" />
+        </ViewFields>
+        <Query>
+          <Where>
+            <And>
+              <Eq>
+                <FieldRef Name="JMLTaskAssignedTo" />
+                <Value Type="Integer">
+                  <UserID />
+                </Value>
+              </Eq>
+              <Neq>
+                <FieldRef Name="JMLTaskStatus" />
+                <Value Type="Choice">Completed</Value>
+              </Neq>
+            </And>
+          </Where>
+          <OrderBy>
+            <FieldRef Name="JMLTaskDueDate" Ascending="TRUE" />
+          </OrderBy>
+        </Query>
+      </View>
+      <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="Overdue Tasks"
+            DefaultView="FALSE" MobileView="FALSE" MobileDefaultView="FALSE"
+            SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/15/images/generic.png"
+            Url="OverdueTasks.aspx">
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <JSLink>clienttemplates.js</JSLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <Toolbar Type="Standard" />
+        <ViewFields>
+          <FieldRef Name="Title" />
+          <FieldRef Name="JMLProcessLookup" />
+          <FieldRef Name="JMLTaskCategory" />
+          <FieldRef Name="JMLTaskAssignedTo" />
+          <FieldRef Name="JMLTaskDueDate" />
+          <FieldRef Name="JMLTaskPriority" />
+        </ViewFields>
+        <Query>
+          <Where>
+            <And>
+              <Neq>
+                <FieldRef Name="JMLTaskStatus" />
+                <Value Type="Choice">Completed</Value>
+              </Neq>
+              <Lt>
+                <FieldRef Name="JMLTaskDueDate" />
+                <Value Type="DateTime">
+                  <Today />
+                </Value>
+              </Lt>
+            </And>
+          </Where>
+          <OrderBy>
+            <FieldRef Name="JMLTaskDueDate" Ascending="TRUE" />
+          </OrderBy>
+        </Query>
+      </View>
+      <View BaseViewID="4" Type="HTML" WebPartZoneID="Main" DisplayName="HR Tasks"
+            DefaultView="FALSE" MobileView="FALSE" MobileDefaultView="FALSE"
+            SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/15/images/generic.png"
+            Url="HRTasks.aspx">
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <JSLink>clienttemplates.js</JSLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <Toolbar Type="Standard" />
+        <ViewFields>
+          <FieldRef Name="Title" />
+          <FieldRef Name="JMLProcessLookup" />
+          <FieldRef Name="JMLTaskStatus" />
+          <FieldRef Name="JMLTaskAssignedTo" />
+          <FieldRef Name="JMLTaskDueDate" />
+        </ViewFields>
+        <Query>
+          <Where>
+            <Eq>
+              <FieldRef Name="JMLTaskCategory" />
+              <Value Type="Choice">HR</Value>
+            </Eq>
+          </Where>
+          <OrderBy>
+            <FieldRef Name="JMLTaskDueDate" Ascending="TRUE" />
+          </OrderBy>
+        </Query>
+      </View>
+      <View BaseViewID="5" Type="HTML" WebPartZoneID="Main" DisplayName="IT Tasks"
+            DefaultView="FALSE" MobileView="FALSE" MobileDefaultView="FALSE"
+            SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/15/images/generic.png"
+            Url="ITTasks.aspx">
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <JSLink>clienttemplates.js</JSLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <Toolbar Type="Standard" />
+        <ViewFields>
+          <FieldRef Name="Title" />
+          <FieldRef Name="JMLProcessLookup" />
+          <FieldRef Name="JMLTaskStatus" />
+          <FieldRef Name="JMLTaskAssignedTo" />
+          <FieldRef Name="JMLTaskDueDate" />
+        </ViewFields>
+        <Query>
+          <Where>
+            <Eq>
+              <FieldRef Name="JMLTaskCategory" />
+              <Value Type="Choice">IT</Value>
+            </Eq>
+          </Where>
+          <OrderBy>
+            <FieldRef Name="JMLTaskDueDate" Ascending="TRUE" />
+          </OrderBy>
+        </Query>
+      </View>
+    </Views>
+  </MetaData>
+</List>

@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<List xmlns:ows="Microsoft SharePoint" Title="JML Processes"
+      Direction="$Resources:Direction;"
+      Url="Lists/JMLProcesses"
+      BaseType="0"
+      xmlns="http://schemas.microsoft.com/sharepoint/">
+  <MetaData>
+    <ContentTypes>
+      <ContentTypeRef ID="0x01" />
+    </ContentTypes>
+    <Fields>
+      <!-- Process ID (Indexed) -->
+      <Field Name="JMLProcessId"
+             ID="{11111111-AAAA-1111-AAAA-111111111111}"
+             DisplayName="Process ID"
+             Type="Text"
+             Required="TRUE"
+             Indexed="TRUE"
+             MaxLength="50"
+             Group="JML Columns" />
+
+      <!-- Employee Lookup (Indexed for performance) -->
+      <Field Name="JMLEmployeeLookup"
+             ID="{22222222-BBBB-2222-BBBB-222222222222}"
+             DisplayName="Employee"
+             Type="Lookup"
+             Required="TRUE"
+             Indexed="TRUE"
+             List="Employees"
+             ShowField="JMLFullName"
+             Group="JML Columns" />
+
+      <!-- Process Type (Indexed) -->
+      <Field Name="JMLProcessType"
+             ID="{E5F6A7B8-C9D0-4E5F-8A9B-0C1D2E3F4A5B}"
+             DisplayName="Process Type"
+             Type="Choice"
+             Required="TRUE"
+             Indexed="TRUE"
+             Group="JML Columns">
+        <CHOICES>
+          <CHOICE>Onboarding</CHOICE>
+          <CHOICE>Transfer</CHOICE>
+          <CHOICE>Offboarding</CHOICE>
+        </CHOICES>
+      </Field>
+
+      <!-- Process Status (Indexed) -->
+      <Field Name="JMLProcessStatus"
+             ID="{F6A7B8C9-D0E1-4F5A-8B9C-0D1E2F3A4B5C}"
+             DisplayName="Process Status"
+             Type="Choice"
+             Required="TRUE"
+             Indexed="TRUE"
+             Group="JML Columns">
+        <CHOICES>
+          <CHOICE>Pending</CHOICE>
+          <CHOICE>In Progress</CHOICE>
+          <CHOICE>Completed</CHOICE>
+          <CHOICE>On Hold</CHOICE>
+          <CHOICE>Cancelled</CHOICE>
+        </CHOICES>
+        <Default>Pending</Default>
+      </Field>
+
+      <!-- Initiated Date (Indexed) -->
+      <Field Name="JMLInitiatedDate"
+             ID="{B8C9D0E1-F2A3-4B5C-8D9E-0F1A2B3C4D5E}"
+             DisplayName="Initiated Date"
+             Type="DateTime"
+             Format="DateOnly"
+             Required="TRUE"
+             Indexed="TRUE"
+             Group="JML Columns" />
+
+      <!-- Target Completion Date (Indexed for filtering) -->
+      <Field Name="JMLTargetCompletion"
+             ID="{C9D0E1F2-A3B4-4C5D-8E9F-0A1B2C3D4E5F}"
+             DisplayName="Target Completion Date"
+             Type="DateTime"
+             Format="DateOnly"
+             Required="TRUE"
+             Indexed="TRUE"
+             Group="JML Columns" />
+
+      <!-- Actual Completion Date -->
+      <Field Name="JMLActualCompletion"
+             ID="{33333333-CCCC-3333-CCCC-333333333333}"
+             DisplayName="Actual Completion Date"
+             Type="DateTime"
+             Format="DateOnly"
+             Required="FALSE"
+             Group="JML Columns" />
+
+      <!-- Priority (Indexed) -->
+      <Field Name="JMLPriority"
+             ID="{A7B8C9D0-E1F2-4A5B-8C9D-0E1F2A3B4C5D}"
+             DisplayName="Priority"
+             Type="Choice"
+             Required="TRUE"
+             Indexed="TRUE"
+             Group="JML Columns">
+        <CHOICES>
+          <CHOICE>Low</CHOICE>
+          <CHOICE>Normal</CHOICE>
+          <CHOICE>High</CHOICE>
+          <CHOICE>Critical</CHOICE>
+        </CHOICES>
+        <Default>Normal</Default>
+      </Field>
+
+      <!-- Overall Progress -->
+      <Field Name="JMLOverallProgress"
+             ID="{D0E1F2A3-B4C5-4D5E-8F9A-0B1C2D3E4F5A}"
+             DisplayName="Overall Progress (%)"
+             Type="Number"
+             Min="0"
+             Max="100"
+             Decimals="0"
+             Required="TRUE"
+             Group="JML Columns">
+        <Default>0</Default>
+      </Field>
+
+      <!-- HR Assigned -->
+      <Field Name="JMLHRAssigned"
+             ID="{44444444-DDDD-4444-DDDD-444444444444}"
+             DisplayName="HR Assigned"
+             Type="User"
+             Required="FALSE"
+             UserSelectionMode="PeopleOnly"
+             UserSelectionScope="0"
+             Group="JML Columns" />
+
+      <!-- IT Assigned -->
+      <Field Name="JMLITAssigned"
+             ID="{55555555-EEEE-5555-EEEE-555555555555}"
+             DisplayName="IT Assigned"
+             Type="User"
+             Required="FALSE"
+             UserSelectionMode="PeopleOnly"
+             UserSelectionScope="0"
+             Group="JML Columns" />
+
+      <!-- Manager -->
+      <Field Name="JMLProcessManager"
+             ID="{66666666-FFFF-6666-FFFF-666666666666}"
+             DisplayName="Manager"
+             Type="User"
+             Required="FALSE"
+             UserSelectionMode="PeopleOnly"
+             UserSelectionScope="0"
+             Group="JML Columns" />
+
+      <!-- Department -->
+      <Field Name="JMLProcessDepartment"
+             ID="{77777777-AAAA-7777-AAAA-777777777777}"
+             DisplayName="Department"
+             Type="Text"
+             Required="TRUE"
+             Indexed="TRUE"
+             MaxLength="100"
+             Group="JML Columns" />
+
+      <!-- Transfer-specific: Old Department -->
+      <Field Name="JMLOldDepartment"
+             ID="{88888888-BBBB-8888-BBBB-888888888888}"
+             DisplayName="Old Department"
+             Type="Text"
+             Required="FALSE"
+             MaxLength="100"
+             Group="JML Columns" />
+
+      <!-- Transfer-specific: New Department -->
+      <Field Name="JMLNewDepartment"
+             ID="{99999999-CCCC-9999-CCCC-999999999999}"
+             DisplayName="New Department"
+             Type="Text"
+             Required="FALSE"
+             MaxLength="100"
+             Group="JML Columns" />
+
+      <!-- Transfer-specific: Old Job Title -->
+      <Field Name="JMLOldJobTitle"
+             ID="{AAAAAAAA-DDDD-AAAA-DDDD-AAAAAAAAAAAA}"
+             DisplayName="Old Job Title"
+             Type="Text"
+             Required="FALSE"
+             MaxLength="100"
+             Group="JML Columns" />
+
+      <!-- Transfer-specific: New Job Title -->
+      <Field Name="JMLNewJobTitle"
+             ID="{BBBBBBBB-EEEE-BBBB-EEEE-BBBBBBBBBBBB}"
+             DisplayName="New Job Title"
+             Type="Text"
+             Required="FALSE"
+             MaxLength="100"
+             Group="JML Columns" />
+
+      <!-- Offboarding-specific: Departure Reason -->
+      <Field Name="JMLDepartureReason"
+             ID="{CCCCCCCC-FFFF-CCCC-FFFF-CCCCCCCCCCCC}"
+             DisplayName="Departure Reason"
+             Type="Choice"
+             Required="FALSE"
+             Group="JML Columns">
+        <CHOICES>
+          <CHOICE>Resignation</CHOICE>
+          <CHOICE>Retirement</CHOICE>
+          <CHOICE>Contract End</CHOICE>
+          <CHOICE>Termination</CHOICE>
+          <CHOICE>Layoff</CHOICE>
+          <CHOICE>Other</CHOICE>
+        </CHOICES>
+      </Field>
+
+      <!-- Offboarding-specific: Exit Interview Completed -->
+      <Field Name="JMLExitInterviewCompleted"
+             ID="{DDDDDDDD-AAAA-DDDD-AAAA-DDDDDDDDDDDD}"
+             DisplayName="Exit Interview Completed"
+             Type="Boolean"
+             Required="FALSE"
+             Group="JML Columns">
+        <Default>0</Default>
+      </Field>
+
+      <!-- Offboarding-specific: Access Revoked -->
+      <Field Name="JMLAccessRevoked"
+             ID="{EEEEEEEE-BBBB-EEEE-BBBB-EEEEEEEEEEEE}"
+             DisplayName="Access Revoked"
+             Type="Boolean"
+             Required="FALSE"
+             Group="JML Columns">
+        <Default>0</Default>
+      </Field>
+
+      <!-- Offboarding-specific: Assets Returned -->
+      <Field Name="JMLAssetsReturned"
+             ID="{FFFFFFFF-CCCC-FFFF-CCCC-FFFFFFFFFFFF}"
+             DisplayName="Assets Returned"
+             Type="Boolean"
+             Required="FALSE"
+             Group="JML Columns">
+        <Default>0</Default>
+      </Field>
+
+      <!-- Last Modified By Workflow -->
+      <Field Name="JMLLastModifiedBy"
+             ID="{11112222-DDDD-1111-DDDD-222211112222}"
+             DisplayName="Last Modified By Workflow"
+             Type="Text"
+             Required="FALSE"
+             MaxLength="255"
+             Group="JML Columns" />
+
+      <!-- Notes -->
+      <Field Name="JMLProcessNotes"
+             ID="{22223333-EEEE-2222-EEEE-333322223333}"
+             DisplayName="Notes"
+             Type="Note"
+             Required="FALSE"
+             NumLines="6"
+             RichText="FALSE"
+             Group="JML Columns" />
+    </Fields>
+    <Views>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="All Processes"
+            DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE"
+            SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/15/images/generic.png"
+            Url="AllItems.aspx">
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <JSLink>clienttemplates.js</JSLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <Toolbar Type="Standard" />
+        <ViewFields>
+          <FieldRef Name="JMLProcessId" />
+          <FieldRef Name="JMLEmployeeLookup" />
+          <FieldRef Name="JMLProcessType" />
+          <FieldRef Name="JMLProcessStatus" />
+          <FieldRef Name="JMLPriority" />
+          <FieldRef Name="JMLTargetCompletion" />
+          <FieldRef Name="JMLOverallProgress" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="JMLInitiatedDate" Ascending="FALSE" />
+          </OrderBy>
+        </Query>
+      </View>
+      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Active Processes"
+            DefaultView="FALSE" MobileView="FALSE" MobileDefaultView="FALSE"
+            SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/15/images/generic.png"
+            Url="ActiveProcesses.aspx">
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <JSLink>clienttemplates.js</JSLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <Toolbar Type="Standard" />
+        <ViewFields>
+          <FieldRef Name="JMLProcessId" />
+          <FieldRef Name="JMLEmployeeLookup" />
+          <FieldRef Name="JMLProcessType" />
+          <FieldRef Name="JMLPriority" />
+          <FieldRef Name="JMLTargetCompletion" />
+          <FieldRef Name="JMLOverallProgress" />
+        </ViewFields>
+        <Query>
+          <Where>
+            <Eq>
+              <FieldRef Name="JMLProcessStatus" />
+              <Value Type="Choice">In Progress</Value>
+            </Eq>
+          </Where>
+          <OrderBy>
+            <FieldRef Name="JMLTargetCompletion" Ascending="TRUE" />
+          </OrderBy>
+        </Query>
+      </View>
+      <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="Overdue Processes"
+            DefaultView="FALSE" MobileView="FALSE" MobileDefaultView="FALSE"
+            SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/15/images/generic.png"
+            Url="OverdueProcesses.aspx">
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <JSLink>clienttemplates.js</JSLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <Toolbar Type="Standard" />
+        <ViewFields>
+          <FieldRef Name="JMLProcessId" />
+          <FieldRef Name="JMLEmployeeLookup" />
+          <FieldRef Name="JMLProcessType" />
+          <FieldRef Name="JMLPriority" />
+          <FieldRef Name="JMLTargetCompletion" />
+          <FieldRef Name="JMLHRAssigned" />
+          <FieldRef Name="JMLITAssigned" />
+        </ViewFields>
+        <Query>
+          <Where>
+            <And>
+              <Neq>
+                <FieldRef Name="JMLProcessStatus" />
+                <Value Type="Choice">Completed</Value>
+              </Neq>
+              <Lt>
+                <FieldRef Name="JMLTargetCompletion" />
+                <Value Type="DateTime">
+                  <Today />
+                </Value>
+              </Lt>
+            </And>
+          </Where>
+          <OrderBy>
+            <FieldRef Name="JMLTargetCompletion" Ascending="TRUE" />
+          </OrderBy>
+        </Query>
+      </View>
+    </Views>
+  </MetaData>
+</List>

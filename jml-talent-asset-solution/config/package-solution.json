@@ -52,6 +52,7 @@
           "elementFiles": [
             "schema-employees.xml",
             "schema-jml-processes.xml",
+            "schema-jml-tasks.xml",
             "schema-asset-inventory.xml"
           ]
         }

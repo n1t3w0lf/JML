@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<List xmlns:ows="Microsoft SharePoint" Title="Asset Inventory"
+      Direction="$Resources:Direction;"
+      Url="Lists/AssetInventory"
+      BaseType="0"
+      xmlns="http://schemas.microsoft.com/sharepoint/">
+  <MetaData>
+    <ContentTypes>
+      <ContentTypeRef ID="0x01" />
+    </ContentTypes>
+    <Fields>
+      <!-- Asset ID (Indexed) -->
+      <Field Name="JMLAssetId"
+             ID="{11111111-AAAA-BBBB-CCCC-DDDD11111111}"
+             DisplayName="Asset ID"
+             Type="Text"
+             Required="TRUE"
+             Indexed="TRUE"
+             MaxLength="50"
+             Group="JML Columns" />
+
+      <!-- Asset Category (Indexed) -->
+      <Field Name="JMLAssetCategory"
+             ID="{B4C5D6E7-F8A9-4B5C-8D9E-0F1A2B3C4D5E}"
+             DisplayName="Asset Category"
+             Type="Choice"
+             Required="TRUE"
+             Indexed="TRUE"
+             Group="JML Columns">
+        <CHOICES>
+          <CHOICE>Laptop</CHOICE>
+          <CHOICE>Desktop</CHOICE>
+          <CHOICE>Monitor</CHOICE>
+          <CHOICE>Phone</CHOICE>
+          <CHOICE>Tablet</CHOICE>
+          <CHOICE>Peripherals</CHOICE>
+          <CHOICE>Access Card</CHOICE>
+          <CHOICE>Other</CHOICE>
+        </CHOICES>
+      </Field>
+
+      <!-- Asset Status (Indexed) -->
+      <Field Name="JMLAssetStatus"
+             ID="{A3B4C5D6-E7F8-4A5B-8C9D-0E1F2A3B4C5D}"
+             DisplayName="Asset Status"
+             Type="Choice"
+             Required="TRUE"
+             Indexed="TRUE"
+             Group="JML Columns">
+        <CHOICES>
+          <CHOICE>Available</CHOICE>
+          <CHOICE>Assigned</CHOICE>
+          <CHOICE>In Maintenance</CHOICE>
+          <CHOICE>Retired</CHOICE>
+          <CHOICE>Lost</CHOICE>
+        </CHOICES>
+        <Default>Available</Default>
+      </Field>
+
+      <!-- Manufacturer -->
+      <Field Name="JMLAssetManufacturer"
+             ID="{22222222-BBBB-CCCC-DDDD-EEEE22222222}"
+             DisplayName="Manufacturer"
+             Type="Text"
+             Required="FALSE"
+             MaxLength="100"
+             Group="JML Columns" />
+
+      <!-- Model -->
+      <Field Name="JMLAssetModel"
+             ID="{33333333-CCCC-DDDD-EEEE-FFFF33333333}"
+             DisplayName="Model"
+             Type="Text"
+             Required="FALSE"
+             MaxLength="100"
+             Group="JML Columns" />
+
+      <!-- Serial Number (Indexed for quick lookups) -->
+      <Field Name="JMLAssetSerialNumber"
+             ID="{44444444-DDDD-EEEE-FFFF-AAAA44444444}"
+             DisplayName="Serial Number"
+             Type="Text"
+             Required="FALSE"
+             Indexed="TRUE"
+             MaxLength="100"
+             Group="JML Columns" />
+
+      <!-- Purchase Date -->
+      <Field Name="JMLAssetPurchaseDate"
+             ID="{55555555-EEEE-FFFF-AAAA-BBBB55555555}"
+             DisplayName="Purchase Date"
+             Type="DateTime"
+             Format="DateOnly"
+             Required="FALSE"
+             Group="JML Columns" />
+
+      <!-- Purchase Cost -->
+      <Field Name="JMLAssetPurchaseCost"
+             ID="{66666666-FFFF-AAAA-BBBB-CCCC66666666}"
+             DisplayName="Purchase Cost"
+             Type="Currency"
+             Required="FALSE"
+             Decimals="2"
+             LCID="1033"
+             Group="JML Columns" />
+
+      <!-- Warranty Expiry Date (Indexed for filtering) -->
+      <Field Name="JMLAssetWarrantyExpiry"
+             ID="{77777777-AAAA-BBBB-CCCC-DDDD77777777}"
+             DisplayName="Warranty Expiry Date"
+             Type="DateTime"
+             Format="DateOnly"
+             Required="FALSE"
+             Indexed="TRUE"
+             Group="JML Columns" />
+
+      <!-- Current Location -->
+      <Field Name="JMLAssetCurrentLocation"
+             ID="{88888888-BBBB-CCCC-DDDD-EEEE88888888}"
+             DisplayName="Current Location"
+             Type="Text"
+             Required="FALSE"
+             MaxLength="100"
+             Group="JML Columns" />
+
+      <!-- Assigned To (User field) -->
+      <Field Name="JMLAssetAssignedTo"
+             ID="{99999999-CCCC-DDDD-EEEE-FFFF99999999}"
+             DisplayName="Assigned To"
+             Type="User"
+             Required="FALSE"
+             UserSelectionMode="PeopleOnly"
+             UserSelectionScope="0"
+             Group="JML Columns" />
+
+      <!-- Assignment Date -->
+      <Field Name="JMLAssetAssignmentDate"
+             ID="{AAAAAAAA-DDDD-EEEE-FFFF-AAAAAAAAAAAA}"
+             DisplayName="Assignment Date"
+             Type="DateTime"
+             Format="DateOnly"
+             Required="FALSE"
+             Group="JML Columns" />
+
+      <!-- Expected Return Date -->
+      <Field Name="JMLAssetExpectedReturn"
+             ID="{BBBBBBBB-EEEE-FFFF-AAAA-BBBBBBBBBBBB}"
+             DisplayName="Expected Return Date"
+             Type="DateTime"
+             Format="DateOnly"
+             Required="FALSE"
+             Group="JML Columns" />
+
+      <!-- Condition -->
+      <Field Name="JMLAssetCondition"
+             ID="{CCCCCCCC-FFFF-AAAA-BBBB-CCCCCCCCCCCC}"
+             DisplayName="Condition"
+             Type="Choice"
+             Required="FALSE"
+             Group="JML Columns">
+        <CHOICES>
+          <CHOICE>Excellent</CHOICE>
+          <CHOICE>Good</CHOICE>
+          <CHOICE>Fair</CHOICE>
+          <CHOICE>Poor</CHOICE>
+          <CHOICE>Damaged</CHOICE>
+        </CHOICES>
+        <Default>Good</Default>
+      </Field>
+
+      <!-- Last Maintenance Date -->
+      <Field Name="JMLAssetLastMaintenance"
+             ID="{DDDDDDDD-AAAA-BBBB-CCCC-DDDDDDDDDDDD}"
+             DisplayName="Last Maintenance Date"
+             Type="DateTime"
+             Format="DateOnly"
+             Required="FALSE"
+             Group="JML Columns" />
+
+      <!-- Next Maintenance Date -->
+      <Field Name="JMLAssetNextMaintenance"
+             ID="{EEEEEEEE-BBBB-CCCC-DDDD-EEEEEEEEEEEE}"
+             DisplayName="Next Maintenance Date"
+             Type="DateTime"
+             Format="DateOnly"
+             Required="FALSE"
+             Group="JML Columns" />
+
+      <!-- Custodian (Person responsible for asset) -->
+      <Field Name="JMLAssetCustodian"
+             ID="{FFFFFFFF-CCCC-DDDD-EEEE-FFFFFFFFFFFF}"
+             DisplayName="Custodian"
+             Type="User"
+             Required="FALSE"
+             UserSelectionMode="PeopleOnly"
+             UserSelectionScope="0"
+             Group="JML Columns" />
+
+      <!-- Depreciation Rate -->
+      <Field Name="JMLAssetDepreciationRate"
+             ID="{11112222-DDDD-EEEE-FFFF-111122221111}"
+             DisplayName="Depreciation Rate (%)"
+             Type="Number"
+             Min="0"
+             Max="100"
+             Decimals="2"
+             Required="FALSE"
+             Group="JML Columns" />
+
+      <!-- Current Value -->
+      <Field Name="JMLAssetCurrentValue"
+             ID="{22223333-EEEE-FFFF-AAAA-222233332222}"
+             DisplayName="Current Value"
+             Type="Currency"
+             Required="FALSE"
+             Decimals="2"
+             LCID="1033"
+             Group="JML Columns" />
+
+      <!-- Disposal Date -->
+      <Field Name="JMLAssetDisposalDate"
+             ID="{33334444-FFFF-AAAA-BBBB-333344443333}"
+             DisplayName="Disposal Date"
+             Type="DateTime"
+             Format="DateOnly"
+             Required="FALSE"
+             Group="JML Columns" />
+
+      <!-- Disposal Method -->
+      <Field Name="JMLAssetDisposalMethod"
+             ID="{44445555-AAAA-BBBB-CCCC-444455554444}"
+             DisplayName="Disposal Method"
+             Type="Choice"
+             Required="FALSE"
+             Group="JML Columns">
+        <CHOICES>
+          <CHOICE>Recycled</CHOICE>
+          <CHOICE>Sold</CHOICE>
+          <CHOICE>Donated</CHOICE>
+          <CHOICE>Destroyed</CHOICE>
+          <CHOICE>Other</CHOICE>
+        </CHOICES>
+      </Field>
+
+      <!-- Supplier -->
+      <Field Name="JMLAssetSupplier"
+             ID="{55556666-BBBB-CCCC-DDDD-555566665555}"
+             DisplayName="Supplier"
+             Type="Text"
+             Required="FALSE"
+             MaxLength="100"
+             Group="JML Columns" />
+
+      <!-- Support Contact -->
+      <Field Name="JMLAssetSupportContact"
+             ID="{66667777-CCCC-DDDD-EEEE-666677776666}"
+             DisplayName="Support Contact"
+             Type="Text"
+             Required="FALSE"
+             MaxLength="255"
+             Group="JML Columns" />
+
+      <!-- License Key (for software assets) -->
+      <Field Name="JMLAssetLicenseKey"
+             ID="{77778888-DDDD-EEEE-FFFF-777788887777}"
+             DisplayName="License Key"
+             Type="Text"
+             Required="FALSE"
+             MaxLength="255"
+             Group="JML Columns" />
+
+      <!-- Barcode/QR Code -->
+      <Field Name="JMLAssetBarcode"
+             ID="{88889999-EEEE-FFFF-AAAA-888899998888}"
+             DisplayName="Barcode/QR Code"
+             Type="Text"
+             Required="FALSE"
+             Indexed="TRUE"
+             MaxLength="100"
+             Group="JML Columns" />
+
+      <!-- Notes -->
+      <Field Name="JMLAssetNotes"
+             ID="{9999AAAA-FFFF-AAAA-BBBB-9999AAAA9999}"
+             DisplayName="Notes"
+             Type="Note"
+             Required="FALSE"
+             NumLines="6"
+             RichText="FALSE"
+             Group="JML Columns" />
+    </Fields>
+    <Views>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="All Assets"
+            DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE"
+            SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/15/images/generic.png"
+            Url="AllItems.aspx">
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <JSLink>clienttemplates.js</JSLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <Toolbar Type="Standard" />
+        <ViewFields>
+          <FieldRef Name="JMLAssetId" />
+          <FieldRef Name="JMLAssetCategory" />
+          <FieldRef Name="JMLAssetStatus" />
+          <FieldRef Name="JMLAssetManufacturer" />
+          <FieldRef Name="JMLAssetModel" />
+          <FieldRef Name="JMLAssetAssignedTo" />
+          <FieldRef Name="JMLAssetCurrentLocation" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="JMLAssetId" Ascending="TRUE" />
+          </OrderBy>
+        </Query>
+      </View>
+      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Available Assets"
+            DefaultView="FALSE" MobileView="FALSE" MobileDefaultView="FALSE"
+            SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/15/images/generic.png"
+            Url="AvailableAssets.aspx">
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <JSLink>clienttemplates.js</JSLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <Toolbar Type="Standard" />
+        <ViewFields>
+          <FieldRef Name="JMLAssetId" />
+          <FieldRef Name="JMLAssetCategory" />
+          <FieldRef Name="JMLAssetManufacturer" />
+          <FieldRef Name="JMLAssetModel" />
+          <FieldRef Name="JMLAssetCondition" />
+          <FieldRef Name="JMLAssetCurrentLocation" />
+        </ViewFields>
+        <Query>
+          <Where>
+            <Eq>
+              <FieldRef Name="JMLAssetStatus" />
+              <Value Type="Choice">Available</Value>
+            </Eq>
+          </Where>
+          <OrderBy>
+            <FieldRef Name="JMLAssetCategory" Ascending="TRUE" />
+          </OrderBy>
+        </Query>
+      </View>
+      <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="Assigned Assets"
+            DefaultView="FALSE" MobileView="FALSE" MobileDefaultView="FALSE"
+            SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/15/images/generic.png"
+            Url="AssignedAssets.aspx">
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <JSLink>clienttemplates.js</JSLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <Toolbar Type="Standard" />
+        <ViewFields>
+          <FieldRef Name="JMLAssetId" />
+          <FieldRef Name="JMLAssetCategory" />
+          <FieldRef Name="JMLAssetAssignedTo" />
+          <FieldRef Name="JMLAssetAssignmentDate" />
+          <FieldRef Name="JMLAssetExpectedReturn" />
+          <FieldRef Name="JMLAssetCurrentLocation" />
+        </ViewFields>
+        <Query>
+          <Where>
+            <Eq>
+              <FieldRef Name="JMLAssetStatus" />
+              <Value Type="Choice">Assigned</Value>
+            </Eq>
+          </Where>
+          <OrderBy>
+            <FieldRef Name="JMLAssetAssignedTo" Ascending="TRUE" />
+          </OrderBy>
+        </Query>
+      </View>
+      <View BaseViewID="4" Type="HTML" WebPartZoneID="Main" DisplayName="Warranty Expiring Soon"
+            DefaultView="FALSE" MobileView="FALSE" MobileDefaultView="FALSE"
+            SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/15/images/generic.png"
+            Url="WarrantyExpiring.aspx">
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <JSLink>clienttemplates.js</JSLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <Toolbar Type="Standard" />
+        <ViewFields>
+          <FieldRef Name="JMLAssetId" />
+          <FieldRef Name="JMLAssetCategory" />
+          <FieldRef Name="JMLAssetManufacturer" />
+          <FieldRef Name="JMLAssetModel" />
+          <FieldRef Name="JMLAssetWarrantyExpiry" />
+          <FieldRef Name="JMLAssetSupplier" />
+        </ViewFields>
+        <Query>
+          <Where>
+            <And>
+              <IsNotNull>
+                <FieldRef Name="JMLAssetWarrantyExpiry" />
+              </IsNotNull>
+              <Leq>
+                <FieldRef Name="JMLAssetWarrantyExpiry" />
+                <Value Type="DateTime">
+                  <Today OffsetDays="90" />
+                </Value>
+              </Leq>
+            </And>
+          </Where>
+          <OrderBy>
+            <FieldRef Name="JMLAssetWarrantyExpiry" Ascending="TRUE" />
+          </OrderBy>
+        </Query>
+      </View>
+      <View BaseViewID="5" Type="HTML" WebPartZoneID="Main" DisplayName="In Maintenance"
+            DefaultView="FALSE" MobileView="FALSE" MobileDefaultView="FALSE"
+            SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/15/images/generic.png"
+            Url="InMaintenance.aspx">
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <JSLink>clienttemplates.js</JSLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <Toolbar Type="Standard" />
+        <ViewFields>
+          <FieldRef Name="JMLAssetId" />
+          <FieldRef Name="JMLAssetCategory" />
+          <FieldRef Name="JMLAssetLastMaintenance" />
+          <FieldRef Name="JMLAssetNextMaintenance" />
+          <FieldRef Name="JMLAssetCustodian" />
+        </ViewFields>
+        <Query>
+          <Where>
+            <Eq>
+              <FieldRef Name="JMLAssetStatus" />
+              <Value Type="Choice">In Maintenance</Value>
+            </Eq>
+          </Where>
+          <OrderBy>
+            <FieldRef Name="JMLAssetLastMaintenance" Ascending="FALSE" />
+          </OrderBy>
+        </Query>
+      </View>
+    </Views>
+  </MetaData>
+</List>

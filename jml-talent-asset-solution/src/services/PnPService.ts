@@ -1,5 +1,6 @@
 import { WebPartContext } from '@microsoft/sp-webpart-base';
-import { spfi, SPFI, SPFx } from '@pnp/sp';
+import { spfi, SPFI } from '@pnp/sp';
+import { SPFx } from '@pnp/sp/presets/all';
 import "@pnp/sp/webs";
 import "@pnp/sp/lists";
 import "@pnp/sp/items";
@@ -182,10 +183,11 @@ export class PnPService {
     items: any[]
   ): Promise<T[]> {
     try {
-      const list = this.sp.web.lists.getByTitle(listTitle);
-      const [batchedList, execute] = this.sp.batched(list);
+      const [batchedSP, execute] = this.sp.batched();
 
-      const promises = items.map(item => batchedList.items.add(item));
+      const promises = items.map(item =>
+        batchedSP.web.lists.getByTitle(listTitle).items.add(item)
+      );
 
       await execute();
       const results = await Promise.all(promises);
