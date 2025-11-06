@@ -1,0 +1,22 @@
+{
+  "extends": "./node_modules/@microsoft/sp-build-web/lib/tsconfig.json",
+  "compilerOptions": {
+    "target": "es2019",
+    "module": "esnext",
+    "lib": ["es2019", "dom"],
+    "jsx": "react",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./node_modules/@microsoft"
+    ],
+    "types": [
+      "webpack-env"
+    ]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ]
+}

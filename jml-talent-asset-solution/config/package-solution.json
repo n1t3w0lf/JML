@@ -1,0 +1,82 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "JML Talent Asset Solution",
+    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": false,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "JML Development Team",
+      "websiteUrl": "https://www.company.com",
+      "privacyUrl": "https://www.company.com/privacy",
+      "termsOfUseUrl": "https://www.company.com/terms",
+      "mpnId": "Undefined-1.0.0.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "JML, Talent Search, and Asset Tracking Solution"
+      },
+      "longDescription": {
+        "default": "A comprehensive solution for managing employee lifecycle (Joiner-Mover-Leaver), talent search with skills database, and IT asset tracking."
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": ["HR", "IT Management", "Workflow", "Tracking"]
+    },
+    "features": [
+      {
+        "title": "JML Site Columns",
+        "description": "Provisions custom site columns for JML solution",
+        "id": "11111111-1111-1111-1111-111111111111",
+        "version": "1.0.0.0",
+        "assets": {
+          "elementManifests": [
+            "elements.xml"
+          ],
+          "elementFiles": [
+            "schema-site-columns.xml"
+          ]
+        }
+      },
+      {
+        "title": "JML Core Lists and Libraries",
+        "description": "Provisions all required SharePoint lists and libraries",
+        "id": "33333333-3333-3333-3333-333333333333",
+        "version": "1.0.0.0",
+        "assets": {
+          "elementManifests": [
+            "elements.xml"
+          ],
+          "elementFiles": [
+            "schema-employees.xml",
+            "schema-jml-processes.xml",
+            "schema-asset-inventory.xml"
+          ]
+        }
+      }
+    ],
+    "webApiPermissionRequests": [
+      {
+        "resource": "Microsoft Graph",
+        "scope": "User.Read.All"
+      },
+      {
+        "resource": "Microsoft Graph",
+        "scope": "User.ReadWrite.All"
+      },
+      {
+        "resource": "Microsoft Graph",
+        "scope": "Group.ReadWrite.All"
+      },
+      {
+        "resource": "Microsoft Graph",
+        "scope": "Directory.Read.All"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/jml-talent-asset-solution.sppkg"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "jml-dashboard-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/jmlDashboard/JmlDashboardWebPart.js",
+          "manifest": "./src/webparts/jmlDashboard/JmlDashboardWebPart.manifest.json",
+          "outputPath": "./dist/jml-dashboard.bundle.js"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "JmlDashboardWebPartStrings": "lib/webparts/jmlDashboard/loc/{locale}.js"
+  }
+}

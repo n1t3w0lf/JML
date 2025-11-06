@@ -1,0 +1,23 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "12345678-abcd-1234-abcd-123456789abc",
+  "alias": "JmlDashboardWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart", "TeamsPersonalApp", "TeamsTab"],
+  "supportsThemeVariants": true,
+  "preconfiguredEntries": [{
+    "groupId": "5c03119e-3074-46fd-976b-c60198311f70",
+    "group": { "default": "JML System" },
+    "title": { "default": "JML Dashboard" },
+    "description": { "default": "Main dashboard for managing JML processes, talent search, and asset tracking" },
+    "officeFabricIconFontName": "Org",
+    "properties": {
+      "description": "JML Dashboard",
+      "showCharts": true,
+      "refreshInterval": 30000
+    }
+  }]
+}
